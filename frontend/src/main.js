@@ -29,7 +29,17 @@ setInterval(() => {
         quoteEl.innerText = "Could not fetch quote.";
         console.error(err);
       });
-}, 300);
+}, 300000);
+
+async function displayQuote(){
+  try {
+    const quote = await GetRandomQuote();
+    quoteEl.innerText = quote.text || quote;
+  } catch (error) {
+    quoteEl.innerText = "Could not fetch quote.";
+    console.error(error);
+  }
+}
 
 // Setup the greet function
 window.greet = function () {
