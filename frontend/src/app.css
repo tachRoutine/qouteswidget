@@ -1,3 +1,20 @@
+.row-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.2rem;
+}
+
+.icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px 0 rgba(162, 175, 155, 0.10);
+    background: #EEE;
+    margin-left: 0.5rem;
+}
 
 .quote-card {
     padding: 2.5rem 2rem 2rem 2rem;
