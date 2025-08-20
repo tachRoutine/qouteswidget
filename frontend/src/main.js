@@ -20,16 +20,10 @@ window.getQuote = function () {
 };
 
 setInterval(() => {
-    GetRandomQuote()
-      .then((quote) => {
-        console.log(quote);
-        quoteEl.innerText = quote.text || quote;
-      })
-      .catch((err) => {
-        quoteEl.innerText = "Could not fetch quote.";
-        console.error(err);
-      });
+    displayQuote();
 }, 300000);
+
+displayQuote();
 
 async function displayQuote(){
   try {
@@ -41,7 +35,6 @@ async function displayQuote(){
   }
 }
 
-// Setup the greet function
 window.greet = function () {
   let name = nameElement.value.trim();
   if (name === "") {
