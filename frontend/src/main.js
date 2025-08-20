@@ -4,16 +4,16 @@ import "./app.css";
 import { GetRandomQuote, Greet } from "../wailsjs/go/main/App";
 // import { EventsOn } from "../wailsjs/runtime/runtime";
 
-// Setup the getQuote function
+const quoteEl = document.getElementById("qoute");
+
 window.getQuote = function () {
-  // Call App.GetRandomQuote()
   import("../wailsjs/go/main/App").then(({ GetRandomQuote }) => {
     GetRandomQuote()
       .then((quote) => {
-        resultElement.innerText = quote.text || quote;
+        quoteEl.innerText = quote.text || quote;
       })
       .catch((err) => {
-        resultElement.innerText = "Could not fetch quote.";
+        quoteEl.innerText = "Could not fetch quote.";
         console.error(err);
       });
   });
@@ -23,10 +23,10 @@ setInterval(() => {
     GetRandomQuote()
       .then((quote) => {
         console.log(quote);
-        resultElement.innerText = quote.text || quote;
+        quoteEl.innerText = quote.text || quote;
       })
       .catch((err) => {
-        resultElement.innerText = "Could not fetch quote.";
+        quoteEl.innerText = "Could not fetch quote.";
         console.error(err);
       });
 }, 300);
@@ -35,15 +35,15 @@ setInterval(() => {
 window.greet = function () {
   let name = nameElement.value.trim();
   if (name === "") {
-    resultElement.innerText = "Please enter your name!";
+    quoteEl.innerText = "Please enter your name!";
     return;
   }
   Greet(name)
     .then((result) => {
-      resultElement.innerText = result;
+      quoteEl.innerText = result;
     })
     .catch((err) => {
-      resultElement.innerText = "Could not greet.";
+      quoteEl.innerText = "Could not greet.";
       console.error(err);
     });
 };
