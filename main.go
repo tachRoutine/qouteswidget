@@ -11,6 +11,10 @@ import (
 //go:embed all:frontend/dist
 var assets embed.FS
 
+func init(){
+	//setup auto start on device startup
+}
+
 func main() {
 	app := NewApp()
 
