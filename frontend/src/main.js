@@ -1,8 +1,8 @@
 import "./style.css";
 import "./app.css";
 
-import { Greet } from "../wailsjs/go/main/App";
-import { EventsOn } from "../wailsjs/runtime/runtime";
+import { GetRandomQuote, Greet } from "../wailsjs/go/main/App";
+// import { EventsOn } from "../wailsjs/runtime/runtime";
 
 // Setup the getQuote function
 window.getQuote = function () {
@@ -19,14 +19,17 @@ window.getQuote = function () {
   });
 };
 
-// Listen for newQuote event from backend
-EventsOn("newQuote", (quote) => {
-  if (quote && quote.text) {
-    resultElement.innerText = quote.text;
-  } else if (typeof quote === "string") {
-    resultElement.innerText = quote;
-  }
-});
+setInterval(() => {
+    GetRandomQuote()
+      .then((quote) => {
+        console.log(quote);
+        resultElement.innerText = quote.text || quote;
+      })
+      .catch((err) => {
+        resultElement.innerText = "Could not fetch quote.";
+        console.error(err);
+      });
+}, 300);
 
 // Setup the greet function
 window.greet = function () {
