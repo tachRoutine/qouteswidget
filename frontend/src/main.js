@@ -19,6 +19,18 @@ let nameElement = document.getElementById("name");
 nameElement.focus();
 let resultElement = document.getElementById("result");
 
+function GetRandomQuote() {
+    // Call App.GetRandomQuote()
+    try {
+        GetRandomQuote()
+            .then((quote) => {
+                resultElement.innerText = quote.text;
+            })
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 // Setup the greet function
 window.greet = function () {
     // Get name
