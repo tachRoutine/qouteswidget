@@ -1,43 +1,52 @@
-import './style.css';
-import './app.css';
+import "./style.css";
+import "./app.css";
 
-import logo from './assets/images/logo-universal.png';
-import {Greet} from '../wailsjs/go/main/App';
+import { GetRandomQuote, Greet } from "../wailsjs/go/main/App";
+// import { EventsOn } from "../wailsjs/runtime/runtime";
 
-document.querySelector('#app').innerHTML = `
-    <img id="logo" class="logo">
-      <div class="result" id="result">Please enter your name below 👇</div>
-      <div class="input-box" id="input">
-        <input class="input" id="name" type="text" autocomplete="off" />
-        <button class="btn" onclick="greet()">Greet</button>
-      </div>
-    </div>
-`;
-document.getElementById('logo').src = logo;
+const quoteEl = document.getElementById("qoute");
 
-let nameElement = document.getElementById("name");
-nameElement.focus();
-let resultElement = document.getElementById("result");
-
-// Setup the greet function
-window.greet = function () {
-    // Get name
-    let name = nameElement.value;
-
-    // Check if the input is empty
-    if (name === "") return;
-
-    // Call App.Greet(name)
-    try {
-        Greet(name)
-            .then((result) => {
-                // Update result with data back from App.Greet()
-                resultElement.innerText = result;
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    } catch (err) {
+window.getQuote = function () {
+  import("../wailsjs/go/main/App").then(({ GetRandomQuote }) => {
+    GetRandomQuote()
+      .then((quote) => {
+        quoteEl.innerText = quote.text || quote;
+      })
+      .catch((err) => {
+        quoteEl.innerText = "Could not fetch quote.";
         console.error(err);
-    }
+      });
+  });
+};
+
+setInterval(() => {
+    displayQuote();
+}, 300000);
+
+displayQuote();
+
+async function displayQuote(){
+  try {
+    const quote = await GetRandomQuote();
+    quoteEl.innerText = quote.text || quote;
+  } catch (error) {
+    quoteEl.innerText = "Could not fetch quote.";
+    console.error(error);
+  }
+}
+
+window.greet = function () {
+  let name = nameElement.value.trim();
+  if (name === "") {
+    quoteEl.innerText = "Please enter your name!";
+    return;
+  }
+  Greet(name)
+    .then((result) => {
+      quoteEl.innerText = result;
+    })
+    .catch((err) => {
+      quoteEl.innerText = "Could not greet.";
+      console.error(err);
+    });
 };

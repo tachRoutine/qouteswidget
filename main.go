@@ -11,19 +11,26 @@ import (
 //go:embed all:frontend/dist
 var assets embed.FS
 
+func init() {
+	//setup auto start on device startup
+}
+
 func main() {
-	// Create an instance of the app structure
 	app := NewApp()
 
-	// Create application with options
+	// systray := app.NewSystemTray()
+	// systray.SetLabel("My App")
+	// systray.SetIcon(iconBytes)
+
 	err := wails.Run(&options.App{
-		Title:  "HeyMe",
-		Width:  300,
-		Height: 160,
+		Title:         "HeyMe",
+		Width:         360,
+		Height:        160,
+		DisableResize: true,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
+		BackgroundColour: &options.RGBA{R: 250, G: 249, B: 238, A: 0},
 		OnStartup:        app.startup,
 		Bind: []interface{}{
 			app,
