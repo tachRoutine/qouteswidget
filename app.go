@@ -24,9 +24,7 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
-	// Set initial quote
 	a.latestQuote = qoutes.GetRandomQuote()
-	// Start goroutine to update quote every 5 minutes
 	go func() {
 		ticker := time.NewTicker(5 * time.Minute)
 		defer ticker.Stop()
@@ -34,7 +32,6 @@ func (a *App) startup(ctx context.Context) {
 			select {
 			case <-ticker.C:
 				a.latestQuote = qoutes.GetRandomQuote()
-				// Emit event to frontend
 				runtime.EventsEmit(a.ctx, "newQuote", a.latestQuote)
 			case <-ctx.Done():
 				return

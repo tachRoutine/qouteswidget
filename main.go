@@ -23,7 +23,6 @@ func main() {
 		Width:  360,
 		Height: 160,
 		DisableResize: true,
-		AlwaysOnTop:   true,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
