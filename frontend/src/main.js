@@ -1,55 +1,49 @@
-import './style.css';
-import './app.css';
+import "./style.css";
+import "./app.css";
 
-import logo from './assets/images/logo-universal.png';
-import {Greet} from '../wailsjs/go/main/App';
+import { Greet } from "../wailsjs/go/main/App";
 
-document.querySelector('#app').innerHTML = `
-    <img id="logo" class="logo">
-      <div class="result" id="result">Please enter your name below 👇</div>
-      <div class="input-box" id="input">
-        <input class="input" id="name" type="text" autocomplete="off" />
-        <button class="btn" onclick="greet()">Greet</button>
-      </div>
-    </div>
+
+document.querySelector("#app").innerHTML = `
+  <div class="quote-card">
+    <div class="result" id="result">Welcome! Get your daily quote 👇</div>
+    <button class="btn" style="margin-top:1.5rem;width:100%;background:#DCCFC0;color:#333;" onclick="getQuote()">Show Daily Quote</button>
+  </div>
 `;
-document.getElementById('logo').src = logo;
+
 
 let nameElement = document.getElementById("name");
 nameElement.focus();
 let resultElement = document.getElementById("result");
 
-function GetRandomQuote() {
-    // Call App.GetRandomQuote()
-    try {
-        GetRandomQuote()
-            .then((quote) => {
-                resultElement.innerText = quote.text;
-            })
-    } catch (err) {
+// Setup the getQuote function
+window.getQuote = function () {
+  // Call App.GetRandomQuote()
+  import("../wailsjs/go/main/App").then(({ GetRandomQuote }) => {
+    GetRandomQuote()
+      .then((quote) => {
+        resultElement.innerText = quote.text || quote;
+      })
+      .catch((err) => {
+        resultElement.innerText = "Could not fetch quote.";
         console.error(err);
-    }
-}
+      });
+  });
+};
 
 // Setup the greet function
 window.greet = function () {
-    // Get name
-    let name = nameElement.value;
-
-    // Check if the input is empty
-    if (name === "") return;
-
-    // Call App.Greet(name)
-    try {
-        Greet(name)
-            .then((result) => {
-                // Update result with data back from App.Greet()
-                resultElement.innerText = result;
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    } catch (err) {
-        console.error(err);
-    }
+  let name = nameElement.value.trim();
+  if (name === "") {
+    resultElement.innerText = "Please enter your name!";
+    return;
+  }
+  Greet(name)
+    .then((result) => {
+      resultElement.innerText = result;
+    })
+    .catch((err) => {
+      resultElement.innerText = "Could not greet.";
+      console.error(err);
+    });
 };
