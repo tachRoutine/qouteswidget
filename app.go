@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"qouteswidget/qoutes"
 )
 
 // App struct
@@ -25,4 +26,8 @@ func (a *App) startup(ctx context.Context) {
 func (a *App) Greet(name string) string {
 	fmt.Println("Greet called with name:", name)
 	return fmt.Sprintf("Hello %s, It's show time!", name)
+}
+
+func (a *App) GetRandomQuote() string {
+	return qoutes.GetRandomQuote()
 }
