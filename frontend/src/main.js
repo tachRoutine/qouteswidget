@@ -2,6 +2,7 @@ import "./style.css";
 import "./app.css";
 
 import { Greet } from "../wailsjs/go/main/App";
+import { EventsOn } from "../wailsjs/runtime/runtime";
 
 // Setup the getQuote function
 window.getQuote = function () {
@@ -17,6 +18,15 @@ window.getQuote = function () {
       });
   });
 };
+
+// Listen for newQuote event from backend
+EventsOn("newQuote", (quote) => {
+  if (quote && quote.text) {
+    resultElement.innerText = quote.text;
+  } else if (typeof quote === "string") {
+    resultElement.innerText = quote;
+  }
+});
 
 // Setup the greet function
 window.greet = function () {
