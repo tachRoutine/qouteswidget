@@ -1,21 +1,19 @@
 
 .icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
     object-fit: cover;
     box-shadow: 0 2px 8px 0 rgba(162, 175, 155, 0.10);
     background: #EEE;
-    margin-bottom: 1rem;
-    margin-left: 0;
+    margin-bottom: .5rem;
+    margin-right: 80%;
     display: block;
-    margin-right: auto;
-    margin-left: auto;
 }
 
 
 .quote-card {
-    padding: 2.5rem 2rem 2rem 2rem;
+    padding: 1rem;
     margin-bottom: 2rem;
     max-width: 420px;
     width: 100%;
