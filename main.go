@@ -19,11 +19,12 @@ func main() {
 		Width:  360,
 		Height: 160,
 		DisableResize: true,
-		Frameless: true,
+		Frameless:     true,
+		AlwaysOnTop:   true,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		BackgroundColour: &options.RGBA{R: 255, G: 255, B: 255, A: 0},
+		BackgroundColour: &options.RGBA{R: 250, G: 249, B: 238, A: 0}, // #FAF9EE, transparent
 		OnStartup:        app.startup,
 		Bind: []interface{}{
 			app,
