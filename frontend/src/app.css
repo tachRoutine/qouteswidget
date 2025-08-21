@@ -20,75 +20,15 @@
     min-height: 120px;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
 }
 
-
-
-.result {
-    font-size: 1.3rem;
-    color: #9e9589;
-    margin-bottom: 1.2rem;
-    min-height: 40px;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    text-align: center;
-}
-
-
-.input-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1.2rem;
-}
-
-.input-box .btn {
-    width: 90px;
-    height: 38px;
-    line-height: 38px;
-    border-radius: 6px;
-    border: none;
-    margin-left: 16px;
-    padding: 0 12px;
-    cursor: pointer;
-    background: #A2AF9B;
-    color: #FAF9EE;
-    font-size: 1rem;
-    font-weight: 600;
-    box-shadow: 0 2px 8px 0 rgba(162, 175, 155, 0.10);
-    transition: background 0.2s, color 0.2s;
-}
-
-.input-box .btn:hover {
-    background: #DCCFC0;
+#qoute {
+    font-size: 1.5rem;
+    font-weight: 400;
     color: #333;
+    margin-bottom: 0.5rem;
 }
 
-
-.input-box .input {
-    border: 2px solid #DCCFC0;
-    border-radius: 6px;
-    outline: none;
-    height: 38px;
-    line-height: 38px;
-    padding: 0 14px;
-    background-color: #EEE;
-    color: #333;
-    font-size: 1rem;
-    -webkit-font-smoothing: antialiased;
-    transition: background 0.2s, border 0.2s;
-}
-
-
-.input-box .input:hover {
-    border: 2px solid #A2AF9B;
-    background-color: #FAF9EE;
-}
-
-
-.input-box .input:focus {
-    border: 2px solid #A2AF9B;
-    background-color: #FAF9EE;
-}
