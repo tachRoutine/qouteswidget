@@ -34,6 +34,7 @@ func main() {
 			TitleBar:             mac.TitleBarHiddenInset(),
 			WebviewIsTransparent: true,
 			WindowIsTranslucent:  true,
+			Appearance: mac.NSAppearanceNameAqua,
 			About: &mac.AboutInfo{
 				Title: "HeyMe",
 				Message: strings.Join([]string{
