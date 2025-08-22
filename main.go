@@ -2,10 +2,13 @@ package main
 
 import (
 	"embed"
+	"strings"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
+	"github.com/wailsapp/wails/v2/pkg/options/mac"
+	"github.com/wailsapp/wails/v2/pkg/options/windows"
 )
 
 //go:embed all:frontend/dist
@@ -27,6 +30,24 @@ func main() {
 		Width:         360,
 		Height:        160,
 		DisableResize: true,
+		Mac: &mac.Options{
+			TitleBar:             mac.TitleBarHiddenInset(),
+			WebviewIsTransparent: true,
+			WindowIsTranslucent:  true,
+			About: &mac.AboutInfo{
+				Title: "HeyMe",
+				Message: strings.Join([]string{
+					"© 2025 Tachera Sasi",
+				}, "\n"),
+			},
+		},
+		Windows: &windows.Options{
+			WebviewIsTransparent: true,
+			WindowIsTranslucent:  true,
+			DisableWindowIcon:    true,
+			DisablePinchZoom:     true,
+			BackdropType:         windows.Acrylic,
+		},
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
